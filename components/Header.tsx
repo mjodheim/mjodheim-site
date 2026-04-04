@@ -1,9 +1,71 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { Menu, X } from "lucide-react";
+
+/* ── Canvas braises ── */
+interface Ember { x: number; y: number; size: number; vx: number; vy: number; alpha: number; fade: number; color: string }
+const EMBER_COLORS = ["rgba(224,90,0,","rgba(201,168,76,","rgba(245,166,35,","rgba(255,122,32,"];
+
+function NavEmbers() {
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const embers = useRef<Ember[]>([]);
+  const raf = useRef<number>(0);
+
+  useEffect(() => {
+    const cv = canvasRef.current;
+    if (!cv) return;
+    const ctx = cv.getContext("2d");
+    if (!ctx) return;
+
+    const resize = () => { cv.width = cv.offsetWidth; cv.height = cv.offsetHeight; };
+    resize();
+    window.addEventListener("resize", resize, { passive: true });
+
+    const spawn = (): Ember => ({
+      x: Math.random() * cv.width,
+      y: cv.height,
+      size: Math.random() * 2 + 0.5,
+      vx: (Math.random() - 0.5) * 0.6,
+      vy: -(Math.random() * 1.2 + 0.3),
+      alpha: Math.random() * 0.5 + 0.2,
+      fade: Math.random() * 0.006 + 0.002,
+      color: EMBER_COLORS[Math.floor(Math.random() * EMBER_COLORS.length)],
+    });
+
+    for (let i = 0; i < 40; i++) { const e = spawn(); e.y = Math.random() * cv.height; embers.current.push(e); }
+
+    const draw = () => {
+      ctx.clearRect(0, 0, cv.width, cv.height);
+      if (Math.random() < 0.35) embers.current.push(spawn());
+      embers.current = embers.current.filter(e => e.alpha > 0);
+      for (const e of embers.current) {
+        e.x += e.vx; e.y += e.vy; e.alpha -= e.fade;
+        e.vx += (Math.random() - 0.5) * 0.04;
+        const g = ctx.createRadialGradient(e.x, e.y, 0, e.x, e.y, e.size * 2.5);
+        g.addColorStop(0, `${e.color}${e.alpha})`);
+        g.addColorStop(1, `${e.color}0)`);
+        ctx.beginPath(); ctx.arc(e.x, e.y, e.size * 2.5, 0, Math.PI * 2);
+        ctx.fillStyle = g; ctx.fill();
+        ctx.beginPath(); ctx.arc(e.x, e.y, e.size * 0.4, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(255,230,120,${e.alpha * 0.7})`; ctx.fill();
+      }
+      raf.current = requestAnimationFrame(draw);
+    };
+    draw();
+
+    return () => { cancelAnimationFrame(raf.current); window.removeEventListener("resize", resize); };
+  }, []);
+
+  return (
+    <canvas
+      ref={canvasRef}
+      style={{ position: "absolute", bottom: 0, left: 0, width: "100%", height: "50px", pointerEvents: "none", zIndex: 0 }}
+    />
+  );
+}
 
 const navLinks = [
   { href: "/", label: "Accueil" },
@@ -36,9 +98,13 @@ export default function Header() {
         transition: "all 0.4s ease",
         backgroundColor: scrolled ? "rgba(10,6,4,0.95)" : "transparent",
         backdropFilter: scrolled ? "blur(12px)" : "none",
-        borderBottom: scrolled ? "1px solid rgba(201,168,76,0.15)" : "none",
+        borderBottom: "none",
+        overflow: "visible",
       }}
     >
+      {/* Ligne dorée + braises en bas du header */}
+      <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: "1px", background: scrolled ? "linear-gradient(90deg, transparent, rgba(201,168,76,0.2), rgba(224,90,0,0.4), rgba(201,168,76,0.2), transparent)" : "transparent", transition: "all 0.4s ease", zIndex: 1 }} />
+      <NavEmbers />
       <div
         style={{
           maxWidth: "1400px",
