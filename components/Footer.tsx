@@ -27,7 +27,7 @@ export default function Footer() {
           <div style={{ display: "flex", alignItems: "center", gap: "0.75rem", marginBottom: "1rem" }}>
             <div style={{ position: "relative", width: "42px", height: "42px" }}>
               <Image
-                src="/images/cropped-Mjodheim-logo-1.png"
+                src="/images/logo-header.png"
                 alt="Mjödheim"
                 fill
                 style={{ objectFit: "contain" }}
@@ -74,7 +74,7 @@ export default function Footer() {
           </h4>
           {[
             { href: "/notre-saga", label: "Notre saga" },
-            { href: "/nos-hydromels", label: "Nos hydromels" },
+            { href: "/nos-creations", label: "Nos créations" },
             { href: "/evenements", label: "Événements" },
             { href: "/chroniques", label: "Chroniques" },
             { href: "/faq", label: "FAQ" },

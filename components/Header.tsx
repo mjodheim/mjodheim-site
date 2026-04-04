@@ -8,7 +8,7 @@ import { Menu, X } from "lucide-react";
 const navLinks = [
   { href: "/", label: "Accueil" },
   { href: "/notre-saga", label: "Notre saga" },
-  { href: "/nos-hydromels", label: "Nos hydromels" },
+  { href: "/nos-creations", label: "Nos créations" },
   { href: "/evenements", label: "Événements" },
   { href: "/chroniques", label: "Chroniques" },
   { href: "/faq", label: "FAQ" },
@@ -55,7 +55,7 @@ export default function Header() {
         <Link href="/" style={{ display: "flex", alignItems: "center", gap: "0.75rem", textDecoration: "none" }}>
           <div style={{ position: "relative", width: "48px", height: "48px" }}>
             <Image
-              src="/images/cropped-Mjodheim-logo-1.png"
+              src="/images/logo-header.png"
               alt="Mjödheim"
               fill
               style={{ objectFit: "contain", filter: "brightness(1.1)" }}

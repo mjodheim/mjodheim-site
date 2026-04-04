@@ -87,7 +87,7 @@ export default function HeroSection() {
         >
           <div style={{ width: "60px", height: "1px", background: "linear-gradient(90deg, transparent, #C9A84C)" }} />
           <span style={{ fontSize: "0.8rem", letterSpacing: "0.3em", textTransform: "uppercase", opacity: 0.9 }}>
-            Hydromel artisanal — Beaumont, Belgique
+            Brasserie artisanale nordique — Beaumont, Belgique
           </span>
           <div style={{ width: "60px", height: "1px", background: "linear-gradient(90deg, #C9A84C, transparent)" }} />
         </motion.div>
@@ -144,8 +144,8 @@ export default function HeroSection() {
           transition={{ duration: 0.8, delay: 1 }}
           style={{ display: "flex", gap: "1.25rem", justifyContent: "center", flexWrap: "wrap" }}
         >
-          <Link href="/nos-hydromels" className="btn-gold">
-            Découvrir nos hydromels
+          <Link href="/nos-creations" className="btn-gold">
+            Découvrir nos créations
           </Link>
           <Link href="/notre-saga" className="btn-outline">
             Notre saga

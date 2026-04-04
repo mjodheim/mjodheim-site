@@ -23,12 +23,12 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: {
-    default: "Mjödheim – Hydromel artisanal belge",
+    default: "Mjödheim – Brasserie artisanale nordique",
     template: "%s – Mjödheim",
   },
   description:
-    "Forgez votre légende, une gorgée à la fois. Hydromel artisanal brassé à Beaumont, Belgique. Inspiré des traditions nordiques.",
-  keywords: ["hydromel", "artisanal", "Belgique", "Beaumont", "nordique", "mead", "Mjödheim", "hydromel belge"],
+    "Forgez votre légende, une gorgée à la fois. Brasserie artisanale nordique à Beaumont, Belgique. Hydromels et bières brassés à la main.",
+  keywords: ["hydromel", "bière artisanale", "Belgique", "Beaumont", "nordique", "mead", "Mjödheim", "brasserie belge", "Ferosol", "Calarwen"],
   authors: [{ name: "Mjödheim" }],
   metadataBase: new URL("https://mjodheim.be"),
   openGraph: {
@@ -79,7 +79,7 @@ export default function RootLayout({
               "@context": "https://schema.org",
               "@type": "LocalBusiness",
               name: "Mjödheim",
-              description: "Hydromel artisanal brassé à Beaumont, Belgique.",
+              description: "Brasserie artisanale nordique à Beaumont, Belgique. Hydromels et bières brassés à la main.",
               url: "https://mjodheim.be",
               telephone: "+32470404191",
               email: "contact@mjodheim.be",

@@ -9,27 +9,51 @@ import { useRef } from "react";
 const products = [
   {
     name: "Brume d'Yggdrasil",
-    subtitle: "Hydromel traditionnel",
-    type: "Sec – Nature",
+    subtitle: "Hydromel nature",
+    type: "Hydromel sec – Nature",
     abv: "~13 % vol.",
     format: "75 cl",
     description:
       "Limpide, sobre, d'une intensité brute qui évoque les matins calmes des fjords. Sa bouche sèche et franche révèle toute la noblesse de la fermentation artisanale.",
-    aroma: "Miel floral pur, notes minérales, finale sèche et nerveuse",
+    aroma: "Miel floral pur, notes minérales, finale sèche",
     image: "/images/Hydromel-classique.png",
     accent: "#C9A84C",
   },
   {
-    name: "Chaleur d'Asgard",
-    subtitle: "Hydromel épicé à l'orange",
-    type: "Sec – Épicé",
-    abv: "~13 % vol.",
-    format: "50 cl",
+    name: "Sang de Freya",
+    subtitle: "Hydromel fruits rouges",
+    type: "Hydromel demi-sec – Fruité",
+    abv: "~12 % vol.",
+    format: "75 cl",
     description:
-      "Un voyage sensoriel vers les banquets du Valhalla. L'orange apporte une vivacité solaire, portée par la chaleur des épices. Chaque gorgée raconte la légende.",
-    aroma: "Orange amère, vanille bourbon, gingembre, cannelle, clou de girofle",
-    image: "/images/Hydromel-epice.png",
-    accent: "#E05A00",
+      "Les baies sauvages s'entremêlent au miel pour un résultat charnu et séduisant, rouge comme l'aurore boréale.",
+    aroma: "Cassis, framboise, miel doux, légère acidité en finale",
+    image: "/images/hydromels.png",
+    accent: "#9B1B30",
+  },
+  {
+    name: "Ferosol",
+    subtitle: "Bière blonde au miel",
+    type: "Bière blonde – Miel",
+    abv: "~6 % vol.",
+    format: "33 cl",
+    description:
+      "La rencontre entre la tradition brassicole et le savoir-faire de l'hydromelier. Le miel apporte rondeur et caractère à cette blonde artisanale, dorée comme l'ambre.",
+    aroma: "Malt léger, miel floral, finale ronde et douce",
+    image: "/images/skol-e1754908325569.png",
+    accent: "#C9A84C",
+  },
+  {
+    name: "Calarwen",
+    subtitle: "Bière blonde sauge & citron vert",
+    type: "Bière blonde – Herbes & agrumes",
+    abv: "~5,5 % vol.",
+    format: "33 cl",
+    description:
+      "Une blonde rafraîchissante et singulière. La sauge apporte une note herbeuse élégante, le citron vert une vivacité qui éveille les sens.",
+    aroma: "Sauge fraîche, zeste de citron vert, malt délicat",
+    image: "/images/Banniere-2.png",
+    accent: "#5A8A3C",
   },
 ];
 
@@ -94,8 +118,8 @@ export default function ProductsSection() {
             Nos{" "}
             <em style={{ color: "#C9A84C", fontStyle: "italic" }}>hydromels</em>
           </h2>
-          <p style={{ color: "rgba(245,230,204,0.6)", maxWidth: "500px", margin: "0 auto", lineHeight: 1.7 }}>
-            Chaque cuvée est une saga. Brassées en petites quantités, sans compromis sur l'authenticité.
+          <p style={{ color: "rgba(245,230,204,0.6)", maxWidth: "540px", margin: "0 auto", lineHeight: 1.7 }}>
+            3 hydromels, 2 bières. Chaque création est une saga. Brassées en petites cuvées, sans compromis.
           </p>
         </motion.div>
 
@@ -246,8 +270,8 @@ export default function ProductsSection() {
           transition={{ duration: 0.8, delay: 0.6 }}
           style={{ textAlign: "center", marginTop: "3.5rem" }}
         >
-          <Link href="/nos-hydromels" className="btn-gold">
-            Voir tous nos hydromels
+          <Link href="/nos-creations" className="btn-gold">
+            Voir toutes nos créations
           </Link>
         </motion.div>
       </div>

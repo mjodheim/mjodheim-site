@@ -104,8 +104,8 @@ export default function CtaSection() {
           </p>
 
           <div style={{ display: "flex", gap: "1.25rem", justifyContent: "center", flexWrap: "wrap" }}>
-            <Link href="/evenements" className="btn-gold">
-              Nos prochains événements
+            <Link href="/nos-creations" className="btn-gold">
+              Découvrir nos créations
             </Link>
             <Link href="/contact" className="btn-outline">
               Nous contacter
