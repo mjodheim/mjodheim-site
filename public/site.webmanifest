@@ -1,0 +1,13 @@
+{
+  "name": "Mjödheim",
+  "short_name": "Mjödheim",
+  "description": "Hydromel artisanal belge",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0A0604",
+  "theme_color": "#C9A84C",
+  "icons": [
+    { "src": "/favicon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "/favicon-512.png", "sizes": "512x512", "type": "image/png" }
+  ]
+}

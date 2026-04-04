@@ -1,0 +1,20 @@
+[
+  {
+    "id": 1,
+    "title": "Marché médiéval de Chimay",
+    "date": "2025-05-10",
+    "dateDisplay": "10 mai 2025",
+    "location": "Chimay, Belgique",
+    "description": "Venez nous retrouver au marché médiéval de Chimay. Dégustation et vente sur place.",
+    "type": "marché"
+  },
+  {
+    "id": 2,
+    "title": "Fête de Beaumont",
+    "date": "2025-06-21",
+    "dateDisplay": "21 juin 2025",
+    "location": "Beaumont, Belgique",
+    "description": "Retrouvez Mjödheim lors de la fête de notre ville. Une occasion de découvrir nos hydromels dans un cadre festif.",
+    "type": "événement"
+  }
+]

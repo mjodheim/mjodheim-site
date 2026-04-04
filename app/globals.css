@@ -1,26 +1,141 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+  /* Palette or / miel / ambre / feu */
+  --color-obsidian: #0A0604;
+  --color-forge: #120C07;
+  --color-ember: #1E1208;
+  --color-gold: #C9A84C;
+  --color-gold-light: #E2C16E;
+  --color-gold-dark: #9A7A2E;
+  --color-honey: #F5A623;
+  --color-honey-light: #F7C05A;
+  --color-fire: #E05A00;
+  --color-fire-light: #FF7A20;
+  --color-amber-warm: #B5651D;
+  --color-cream: #F5E6CC;
+  --color-parchment: #EDD9A3;
+
+  /* Fonts */
+  --font-serif: var(--font-cormorant), "Georgia", serif;
+  --font-sans: var(--font-inter), system-ui, sans-serif;
+
+  /* Animations */
+  --animate-flicker: flicker 3s infinite alternate;
+  --animate-float: float 6s ease-in-out infinite;
+  --animate-glow-pulse: glow-pulse 2s ease-in-out infinite alternate;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+@keyframes flicker {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.85; }
+  75% { opacity: 0.95; }
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes glow-pulse {
+  0% { box-shadow: 0 0 20px rgba(201,168,76,0.3); }
+  100% { box-shadow: 0 0 40px rgba(201,168,76,0.7), 0 0 80px rgba(224,90,0,0.3); }
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: #0A0604;
+  color: #F5E6CC;
+  font-family: var(--font-inter), system-ui, sans-serif;
+  overflow-x: hidden;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: #120C07; }
+::-webkit-scrollbar-thumb { background: #C9A84C; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #E2C16E; }
+
+/* Sélection */
+::selection { background: rgba(201,168,76,0.3); color: #F5E6CC; }
+
+/* Gold glow text */
+.gold-glow {
+  text-shadow: 0 0 30px rgba(201,168,76,0.5), 0 0 60px rgba(224,90,0,0.2);
+}
+
+/* Séparateur décoratif */
+.rune-divider {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  color: #C9A84C;
+}
+.rune-divider::before,
+.rune-divider::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #C9A84C44, transparent);
+}
+
+/* Bouton principal doré */
+.btn-gold {
+  background: linear-gradient(135deg, #9A7A2E 0%, #E2C16E 50%, #9A7A2E 100%);
+  color: #0A0604;
+  font-family: var(--font-cormorant), Georgia, serif;
+  font-weight: 600;
+  font-size: 1.05rem;
+  letter-spacing: 0.12em;
+  padding: 0.875rem 2.5rem;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+  text-decoration: none;
+}
+.btn-gold::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, transparent 0%, rgba(255,255,255,0.15) 50%, transparent 100%);
+  transform: translateX(-100%);
+  transition: transform 0.5s ease;
+}
+.btn-gold:hover::before { transform: translateX(100%); }
+.btn-gold:hover {
+  box-shadow: 0 0 30px rgba(201,168,76,0.5);
+  transform: translateY(-1px);
+}
+
+/* Bouton contour */
+.btn-outline {
+  border: 1px solid rgba(201,168,76,0.5);
+  color: #C9A84C;
+  font-family: var(--font-cormorant), Georgia, serif;
+  font-weight: 500;
+  font-size: 1.05rem;
+  letter-spacing: 0.12em;
+  padding: 0.875rem 2.5rem;
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: inline-block;
+  text-decoration: none;
+}
+.btn-outline:hover {
+  border-color: #C9A84C;
+  background: rgba(201,168,76,0.08);
+  box-shadow: 0 0 20px rgba(201,168,76,0.15);
 }
