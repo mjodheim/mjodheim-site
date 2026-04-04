@@ -1,12 +1,24 @@
 import { config, collection, fields } from "@keystatic/core";
 
+const hasGithubConfig = !!(
+  process.env.KEYSTATIC_GITHUB_CLIENT_ID &&
+  process.env.NEXT_PUBLIC_GITHUB_OWNER &&
+  process.env.NEXT_PUBLIC_GITHUB_REPO
+);
+
 export default config({
-  storage: { kind: "local" },
+  storage: hasGithubConfig
+    ? {
+        kind: "github",
+        repo: {
+          owner: process.env.NEXT_PUBLIC_GITHUB_OWNER!,
+          name: process.env.NEXT_PUBLIC_GITHUB_REPO!,
+        },
+      }
+    : { kind: "local" },
 
   ui: {
-    brand: {
-      name: "Mjödheim",
-    },
+    brand: { name: "Mjödheim" },
   },
 
   collections: {
