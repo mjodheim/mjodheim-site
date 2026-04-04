@@ -53,12 +53,23 @@ export default function Header() {
       >
         {/* Logo */}
         <Link href="/" style={{ display: "flex", alignItems: "center", gap: "0.75rem", textDecoration: "none" }}>
-          <div style={{ position: "relative", width: "48px", height: "48px" }}>
+          <div
+            style={{
+              position: "relative",
+              width: "48px",
+              height: "48px",
+              borderRadius: "50%",
+              overflow: "hidden",
+              border: "2px solid rgba(201,168,76,0.5)",
+              boxShadow: "0 0 12px rgba(201,168,76,0.25)",
+              flexShrink: 0,
+            }}
+          >
             <Image
               src="/images/logo-header.png"
               alt="Mjödheim"
               fill
-              style={{ objectFit: "contain", filter: "brightness(1.1)" }}
+              style={{ objectFit: "cover" }}
             />
           </div>
           <span

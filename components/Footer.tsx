@@ -25,12 +25,22 @@ export default function Footer() {
         {/* Logo + tagline */}
         <div>
           <div style={{ display: "flex", alignItems: "center", gap: "0.75rem", marginBottom: "1rem" }}>
-            <div style={{ position: "relative", width: "42px", height: "42px" }}>
+            <div
+              style={{
+                position: "relative",
+                width: "42px",
+                height: "42px",
+                borderRadius: "50%",
+                overflow: "hidden",
+                border: "2px solid rgba(201,168,76,0.4)",
+                flexShrink: 0,
+              }}
+            >
               <Image
                 src="/images/logo-header.png"
                 alt="Mjödheim"
                 fill
-                style={{ objectFit: "contain" }}
+                style={{ objectFit: "cover" }}
               />
             </div>
             <span
