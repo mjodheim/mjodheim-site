@@ -7,12 +7,11 @@ import Image from "next/image";
 import { Menu, X } from "lucide-react";
 
 /* ── Canvas braises ── */
-interface Ember { x: number; y: number; size: number; vx: number; vy: number; alpha: number; fade: number; color: string }
-const EMBER_COLORS = ["rgba(224,90,0,","rgba(201,168,76,","rgba(245,166,35,","rgba(255,122,32,"];
+interface Ember { x: number; y: number; size: number; vx: number; vy: number; alpha: number; fade: number; color: string; pulse: number; pulseSpeed: number }
+const EMBER_COLORS = ["rgba(224,90,0,","rgba(245,166,35,","rgba(255,122,32,","rgba(255,200,80,"];
 
 function NavEmbers() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const embers = useRef<Ember[]>([]);
   const raf = useRef<number>(0);
 
   useEffect(() => {
@@ -25,34 +24,56 @@ function NavEmbers() {
     resize();
     window.addEventListener("resize", resize, { passive: true });
 
+    const embers: Ember[] = [];
+    let wind = 0, windTarget = 0, windTimer = 0;
+
     const spawn = (): Ember => ({
       x: Math.random() * cv.width,
-      y: cv.height,
-      size: Math.random() * 2 + 0.5,
-      vx: (Math.random() - 0.5) * 0.6,
-      vy: -(Math.random() * 1.2 + 0.3),
-      alpha: Math.random() * 0.5 + 0.2,
-      fade: Math.random() * 0.006 + 0.002,
+      y: cv.height + 2,
+      size: Math.random() * 1.0 + 0.3,
+      vx: (Math.random() - 0.5) * 0.5 + wind * 0.2,
+      vy: -(Math.random() * 1.0 + 0.3),
+      alpha: Math.random() * 0.45 + 0.15,
+      fade: Math.random() * 0.004 + 0.001,
       color: EMBER_COLORS[Math.floor(Math.random() * EMBER_COLORS.length)],
+      pulse: Math.random() * Math.PI * 2,
+      pulseSpeed: Math.random() * 0.04 + 0.015,
     });
-
-    for (let i = 0; i < 40; i++) { const e = spawn(); e.y = Math.random() * cv.height; embers.current.push(e); }
 
     const draw = () => {
       ctx.clearRect(0, 0, cv.width, cv.height);
-      if (Math.random() < 0.35) embers.current.push(spawn());
-      embers.current = embers.current.filter(e => e.alpha > 0);
-      for (const e of embers.current) {
-        e.x += e.vx; e.y += e.vy; e.alpha -= e.fade;
-        e.vx += (Math.random() - 0.5) * 0.04;
-        const g = ctx.createRadialGradient(e.x, e.y, 0, e.x, e.y, e.size * 2.5);
-        g.addColorStop(0, `${e.color}${e.alpha})`);
-        g.addColorStop(1, `${e.color}0)`);
-        ctx.beginPath(); ctx.arc(e.x, e.y, e.size * 2.5, 0, Math.PI * 2);
-        ctx.fillStyle = g; ctx.fill();
-        ctx.beginPath(); ctx.arc(e.x, e.y, e.size * 0.4, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(255,230,120,${e.alpha * 0.7})`; ctx.fill();
+
+      windTimer--;
+      if (windTimer <= 0) { windTarget = (Math.random() - 0.5) * 1.6; windTimer = 80 + Math.floor(Math.random() * 100); }
+      wind += (windTarget - wind) * 0.01;
+
+      if (Math.random() < 0.007) {
+        const count = 2 + Math.floor(Math.random() * 3);
+        for (let i = 0; i < count; i++) embers.push(spawn());
+      } else if (embers.length < 14 && Math.random() < 0.14) {
+        embers.push(spawn());
       }
+
+      for (let i = embers.length - 1; i >= 0; i--) {
+        const e = embers[i];
+        e.vx += wind * 0.01 + (Math.random() - 0.5) * 0.03;
+        e.x += e.vx; e.y += e.vy; e.alpha -= e.fade;
+        e.pulse += e.pulseSpeed;
+        if (e.alpha <= 0) { embers.splice(i, 1); continue; }
+
+        const pa = e.alpha * (0.8 + 0.2 * Math.sin(e.pulse));
+        const ps = e.size * (0.92 + 0.1 * Math.sin(e.pulse * 1.3));
+
+        const g = ctx.createRadialGradient(e.x, e.y, 0, e.x, e.y, ps * 3.5);
+        g.addColorStop(0, `${e.color}${(pa * 0.5).toFixed(3)})`);
+        g.addColorStop(1, `${e.color}0)`);
+        ctx.beginPath(); ctx.arc(e.x, e.y, ps * 3.5, 0, Math.PI * 2);
+        ctx.fillStyle = g; ctx.fill();
+
+        ctx.beginPath(); ctx.arc(e.x, e.y, ps * 0.35, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(255,235,180,${(pa * 0.65).toFixed(3)})`; ctx.fill();
+      }
+
       raf.current = requestAnimationFrame(draw);
     };
     draw();
@@ -63,7 +84,7 @@ function NavEmbers() {
   return (
     <canvas
       ref={canvasRef}
-      style={{ position: "absolute", bottom: 0, left: 0, width: "100%", height: "50px", pointerEvents: "none", zIndex: 0 }}
+      style={{ position: "absolute", bottom: 0, left: 0, width: "100%", height: "60px", pointerEvents: "none", zIndex: 0 }}
     />
   );
 }
