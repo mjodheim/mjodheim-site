@@ -89,6 +89,11 @@ export default config({
           label: "Catégorie",
           description: "Ex : Histoire & culture",
         }),
+        image: fields.text({
+          label: "Image",
+          description: "Nom du fichier dans /public/images/ (ex: chronique-hydromel.png)",
+          validation: { isRequired: true },
+        }),
         content: fields.markdoc({
           label: "Contenu de l'article",
         }),
