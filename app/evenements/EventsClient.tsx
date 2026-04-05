@@ -25,7 +25,7 @@ export default function EventsClient({ events }: { events: Event[] }) {
       <section
         style={{
           paddingTop: "160px",
-          paddingBottom: "5rem",
+          paddingBottom: "2rem",
           textAlign: "center",
           backgroundColor: "#0A0604",
           position: "relative",
@@ -52,7 +52,7 @@ export default function EventsClient({ events }: { events: Event[] }) {
       </section>
 
       {/* Contenu */}
-      <section style={{ backgroundColor: "#0A0604", padding: "6rem 2rem" }}>
+      <section style={{ backgroundColor: "#0A0604", padding: "3rem 2rem 6rem" }}>
         <div style={{ maxWidth: "900px", margin: "0 auto" }}>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
