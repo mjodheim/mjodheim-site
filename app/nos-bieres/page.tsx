@@ -4,60 +4,43 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import { useRef } from "react";
 import { useInView } from "framer-motion";
-import type { Metadata } from "next";
 
 const products = [
   {
-    name: "Brume d'Yggdrasil",
-    subtitle: "Hydromel traditionnel",
-    type: "Sec – Nature",
-    abv: "~13 % vol.",
-    format: "75 cl",
-    service: "8-10°C, bien frais",
-    conservation: "À l'abri de la lumière. À consommer de préférence dans les 3 ans.",
-    accords: "Plateau de fruits de mer, fromage frais de chèvre, tarte aux fruits jaunes.",
-    aroma: "Miel floral pur, notes minérales, finale sèche et nerveuse.",
+    name: "Ferosol",
+    subtitle: "Bière blonde au miel",
+    type: "Blonde – Miel",
+    abv: "~6 % vol.",
+    format: "33 cl",
+    service: "4-6°C, très frais",
+    conservation: "À l'abri de la chaleur et de la lumière. À consommer avant la date indiquée.",
+    accords: "Fromages doux, volaille rôtie, cuisine asiatique.",
+    aroma: "Malt léger, miel floral, légère douceur en bouche, finale ronde et persistante.",
     description:
-      "Inspiré par l'arbre-monde qui relie les neuf royaumes, cet hydromel exprime la quintessence du miel, sans artifice. Brume d'Yggdrasil est une invitation à la méditation : limpide, sobre, et d'une intensité brute qui évoque les matins calmes des fjords. Sa bouche sèche et franche révèle toute la noblesse de la fermentation artisanale.",
-    image: "/images/brume-d-yggdrasil.png",
+      "Ferosol est né de la même passion que nos hydromels : mettre le miel au cœur de la création. Cette blonde artisanale brassée au miel de qualité supérieure offre une rondeur et un caractère uniques. Dorée comme l'ambre, elle réconcilie la tradition brassicole belge avec le savoir-faire de l'hydromelier.",
+    image: "/images/ferosol.png",
     accent: "#C9A84C",
     bgAccent: "rgba(201,168,76,0.05)",
   },
   {
-    name: "Chaleur d'Asgard",
-    subtitle: "Hydromel épicé à l'orange",
-    type: "Sec – Épicé",
-    abv: "~13 % vol.",
-    format: "50 cl",
-    service: "10-12°C, légèrement rafraîchi",
-    conservation: "À l'abri de la lumière. À consommer de préférence dans les 3 ans.",
-    accords: "Gibier rôti, fromage à pâte dure, dessert au chocolat noir.",
-    aroma: "Orange amère, vanille bourbon, gingembre frais, cannelle de Ceylan, clou de girofle.",
+    name: "Calarwen",
+    subtitle: "Bière blonde à la sauge et au citron vert",
+    type: "Blonde – Herbes & agrumes",
+    abv: "~5,5 % vol.",
+    format: "33 cl",
+    service: "4-6°C, très frais",
+    conservation: "À l'abri de la chaleur et de la lumière. À consommer avant la date indiquée.",
+    accords: "Poissons grillés, salades fraîches, tapas, mezze.",
+    aroma: "Sauge fraîche, zeste de citron vert, malt délicat, finale herbacée et vive.",
     description:
-      "Une boisson forgée dans les flammes du foyer viking. L'orange apporte une vivacité solaire, adoucie par la vanille et portée par la chaleur des épices. Gingembre et cannelle s'embrasent, tandis que le clou de girofle apporte une profondeur presque mystique. Chaleur d'Asgard est un voyage sensoriel vers les banquets du Valhalla, là où chaque gorgée raconte la légende.",
-    image: "/images/chaleur-d-asgard.png",
-    accent: "#E05A00",
-    bgAccent: "rgba(224,90,0,0.05)",
-  },
-  {
-    name: "Sang de Freya",
-    subtitle: "Hydromel aux fruits rouges",
-    type: "Demi-sec – Fruité",
-    abv: "~12 % vol.",
-    format: "75 cl",
-    service: "8-10°C, bien frais",
-    conservation: "À l'abri de la lumière. À consommer de préférence dans les 3 ans.",
-    accords: "Desserts aux fruits rouges, fromages frais, charcuteries fines.",
-    aroma: "Cassis, framboise, miel doux, légère acidité en finale.",
-    description:
-      "Dédié à Freya, déesse de l'amour et de la fertilité, cet hydromel aux fruits rouges est généreux et profond. Les baies sauvages — cassis, framboise — s'entremêlent au miel pour un résultat charnu et séduisant, rouge comme le sang des aurores boréales. Un hydromel qui s'assume, intense et sincère.",
-    image: "/images/sang-de-freya.png",
-    accent: "#9B1B30",
-    bgAccent: "rgba(155,27,48,0.05)",
+      "Calarwen — nom d'inspiration celtique évoquant la clarté et la lumière — est une blonde singulière et rafraîchissante. La sauge apporte une note herbeuse et élégante, le citron vert une vivacité qui éveille les sens. Une bière pensée pour ceux qui cherchent à sortir des sentiers battus.",
+    image: "/images/calarwen.png",
+    accent: "#5A8A3C",
+    bgAccent: "rgba(90,138,60,0.05)",
   },
 ];
 
-function ProductCard({ product, index }: { product: typeof products[0]; index: number }) {
+function BeerCard({ product, index }: { product: typeof products[0]; index: number }) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-80px" });
   const isEven = index % 2 === 0;
@@ -73,7 +56,7 @@ function ProductCard({ product, index }: { product: typeof products[0]; index: n
         border: "1px solid rgba(201,168,76,0.1)",
         overflow: "hidden",
       }}
-      className="product-card-grid"
+      className="beer-card-grid"
     >
       {/* Image */}
       <motion.div
@@ -83,35 +66,25 @@ function ProductCard({ product, index }: { product: typeof products[0]; index: n
         style={{
           position: "relative",
           minHeight: "500px",
-          backgroundColor: "#1A1008",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
+          overflow: "hidden",
           order: isEven ? 0 : 1,
         }}
-        className="product-image-col"
+        className="beer-image-col"
       >
-        <div style={{ position: "relative", width: "100%", height: "100%" }}>
-          <Image
-            src={product.image}
-            alt={product.name}
-            fill
-            style={{ objectFit: "contain", padding: "3rem" }}
-          />
-          {/* Lueur */}
-          <div
-            style={{
-              position: "absolute",
-              bottom: 0,
-              left: "50%",
-              transform: "translateX(-50%)",
-              width: "70%",
-              height: "40%",
-              background: `radial-gradient(ellipse at bottom, ${product.accent}25 0%, transparent 80%)`,
-              pointerEvents: "none",
-            }}
-          />
-        </div>
+        <Image
+          src={product.image}
+          alt={product.name}
+          fill
+          style={{ objectFit: "cover" }}
+        />
+        <div
+          style={{
+            position: "absolute",
+            inset: 0,
+            background: "linear-gradient(135deg, rgba(10,6,4,0.2) 0%, transparent 60%)",
+            pointerEvents: "none",
+          }}
+        />
       </motion.div>
 
       {/* Infos */}
@@ -127,7 +100,7 @@ function ProductCard({ product, index }: { product: typeof products[0]; index: n
           flexDirection: "column",
           justifyContent: "center",
         }}
-        className="product-info-col"
+        className="beer-info-col"
       >
         <div style={{ marginBottom: "0.5rem" }}>
           <span
@@ -164,7 +137,6 @@ function ProductCard({ product, index }: { product: typeof products[0]; index: n
           {product.description}
         </p>
 
-        {/* Profil aromatique */}
         <div style={{ marginBottom: "1.5rem" }}>
           <p style={{ fontSize: "0.7rem", letterSpacing: "0.2em", color: product.accent, textTransform: "uppercase", marginBottom: "0.4rem" }}>
             Profil aromatique
@@ -174,7 +146,6 @@ function ProductCard({ product, index }: { product: typeof products[0]; index: n
           </p>
         </div>
 
-        {/* Grille détails */}
         <div
           style={{
             display: "grid",
@@ -194,7 +165,7 @@ function ProductCard({ product, index }: { product: typeof products[0]; index: n
           ].map((item) => (
             <div key={item.label}>
               <p style={{ fontSize: "0.65rem", letterSpacing: "0.15em", color: "rgba(245,230,204,0.4)", textTransform: "uppercase", marginBottom: "0.25rem" }}>{item.label}</p>
-              <p style={{ fontSize: "0.85rem", color: "#C9A84C", fontFamily: "var(--font-cormorant), Georgia, serif" }}>{item.value}</p>
+              <p style={{ fontSize: "0.85rem", color: product.accent, fontFamily: "var(--font-cormorant), Georgia, serif" }}>{item.value}</p>
             </div>
           ))}
         </div>
@@ -207,7 +178,7 @@ function ProductCard({ product, index }: { product: typeof products[0]; index: n
   );
 }
 
-export default function NosHydromelsPage() {
+export default function NossBieresPage() {
   return (
     <>
       {/* Hero */}
@@ -259,7 +230,7 @@ export default function NosHydromelsPage() {
           >
             Nos{" "}
             <em style={{ fontStyle: "italic", color: "#C9A84C", textShadow: "0 0 40px rgba(201,168,76,0.4)" }}>
-              hydromels
+              bières
             </em>
           </h1>
           <p
@@ -268,21 +239,45 @@ export default function NosHydromelsPage() {
               fontSize: "1.2rem",
               fontStyle: "italic",
               color: "rgba(245,230,204,0.6)",
-              maxWidth: "500px",
+              maxWidth: "560px",
               margin: "0 auto",
               lineHeight: 1.7,
             }}
           >
-            Chaque cuvée est une saga. Brassées en petites quantités, sans compromis sur l'authenticité.
+            Après les hydromels, la brasserie s'est naturellement tournée vers la bière — en gardant la même exigence : des ingrédients nobles, des recettes sincères.
           </p>
         </motion.div>
       </section>
 
+      {/* Intro narrative */}
+      <section style={{ backgroundColor: "#0A0604", padding: "0 2rem 4rem" }}>
+        <div
+          style={{
+            maxWidth: "700px",
+            margin: "0 auto",
+            borderLeft: "2px solid rgba(201,168,76,0.3)",
+            paddingLeft: "2rem",
+          }}
+        >
+          <p
+            style={{
+              fontFamily: "var(--font-cormorant), Georgia, serif",
+              fontSize: "1.15rem",
+              color: "rgba(245,230,204,0.65)",
+              lineHeight: 1.9,
+              fontStyle: "italic",
+            }}
+          >
+            L'hydromel fut le point de départ. Mais la passion du brassage ne s'arrête pas là. Mjödheim a étendu sa gamme avec deux bières artisanales qui portent le même ADN : authenticité, caractère, et un lien profond avec la nature. Chaque recette est pensée pour compléter la gamme sans la trahir.
+          </p>
+        </div>
+      </section>
+
       {/* Produits */}
-      <section style={{ backgroundColor: "#0A0604", padding: "4rem 2rem" }}>
+      <section style={{ backgroundColor: "#0A0604", padding: "2rem 2rem 4rem" }}>
         <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
           {products.map((product, i) => (
-            <ProductCard key={product.name} product={product} index={i} />
+            <BeerCard key={product.name} product={product} index={i} />
           ))}
         </div>
       </section>
@@ -306,16 +301,16 @@ export default function NosHydromelsPage() {
               lineHeight: 1.7,
             }}
           >
-            Nos hydromels sont disponibles à l'atelier à Beaumont et sur les marchés médiévaux.
+            Nos bières sont disponibles à l'atelier à Beaumont et sur les marchés médiévaux.
           </p>
         </div>
       </section>
 
       <style>{`
         @media (max-width: 768px) {
-          .product-card-grid { grid-template-columns: 1fr !important; }
-          .product-image-col { min-height: 300px !important; order: 0 !important; }
-          .product-info-col { padding: 2rem !important; order: 1 !important; }
+          .beer-card-grid { grid-template-columns: 1fr !important; }
+          .beer-image-col { min-height: 300px !important; order: 0 !important; }
+          .beer-info-col { padding: 2rem !important; order: 1 !important; }
         }
       `}</style>
     </>

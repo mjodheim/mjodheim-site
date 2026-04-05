@@ -74,8 +74,8 @@ export default function AboutSection() {
             }}
           >
             <Image
-              src="/images/Hydromel-brasse.png"
-              alt="Brassage artisanal Mjödheim"
+              src="/images/notre-histoire-v2.png"
+              alt="Notre histoire – Mjödheim"
               fill
               style={{ objectFit: "cover" }}
             />
@@ -88,37 +88,6 @@ export default function AboutSection() {
               }}
             />
           </div>
-          {/* Badge flottant */}
-          <motion.div
-            animate={{ y: [0, -8, 0] }}
-            transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }}
-            style={{
-              position: "absolute",
-              bottom: "-1rem",
-              right: "-1rem",
-              backgroundColor: "#120C07",
-              border: "1px solid rgba(201,168,76,0.4)",
-              padding: "1.25rem 1.5rem",
-              zIndex: 2,
-              boxShadow: "0 0 30px rgba(201,168,76,0.1)",
-            }}
-          >
-            <div
-              style={{
-                fontFamily: "var(--font-cormorant), Georgia, serif",
-                fontSize: "2.5rem",
-                fontWeight: 700,
-                color: "#C9A84C",
-                lineHeight: 1,
-                textShadow: "0 0 20px rgba(201,168,76,0.4)",
-              }}
-            >
-              ~13°
-            </div>
-            <div style={{ fontSize: "0.75rem", color: "rgba(245,230,204,0.6)", letterSpacing: "0.1em" }}>
-              VOL. ALCOOL
-            </div>
-          </motion.div>
         </motion.div>
 
         {/* Texte */}

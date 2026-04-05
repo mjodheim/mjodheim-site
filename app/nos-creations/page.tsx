@@ -21,8 +21,10 @@ const products = [
     aroma: "Miel floral pur, notes minérales, finale sèche et nerveuse.",
     description:
       "Inspiré par l'arbre-monde qui relie les neuf royaumes, cet hydromel exprime la quintessence du miel, sans artifice. Limpide, sobre, d'une intensité brute qui évoque les matins calmes des fjords.",
-    image: "/images/Hydromel-classique.png",
+    image: "/images/brume-d-yggdrasil.png",
     accent: "#C9A84C",
+    imageFit: "contain" as const,
+    imagePadding: "2rem",
   },
   {
     category: "hydromel" as const,
@@ -36,8 +38,10 @@ const products = [
     aroma: "Orange amère, vanille bourbon, gingembre, cannelle, clou de girofle.",
     description:
       "Une boisson forgée dans les flammes du foyer viking. L'orange apporte une vivacité solaire, portée par la chaleur des épices. Un voyage sensoriel vers les banquets du Valhalla.",
-    image: "/images/Hydromel-epice.png",
+    image: "/images/chaleur-d-asgard.png",
     accent: "#E05A00",
+    imageFit: "contain" as const,
+    imagePadding: "2rem",
   },
   {
     category: "hydromel" as const,
@@ -51,8 +55,10 @@ const products = [
     aroma: "Cassis, framboise, miel doux, légère acidité en finale.",
     description:
       "Dédié à Freya, déesse de l'amour et de la fertilité, cet hydromel aux fruits rouges est généreux et profond. Les baies sauvages s'entremêlent au miel pour un résultat charnu et séduisant.",
-    image: "/images/hydromels.png",
+    image: "/images/sang-de-freya.png",
     accent: "#9B1B30",
+    imageFit: "contain" as const,
+    imagePadding: "2rem",
   },
   // — BIÈRES —
   {
@@ -67,8 +73,10 @@ const products = [
     aroma: "Malt léger, miel floral, légère douceur en bouche, finale ronde.",
     description:
       "Ferosol est le fruit de la rencontre entre la tradition brassicole et le savoir-faire de l'hydromelier. Le miel de qualité supérieure apporte rondeur et caractère à cette blonde artisanale, dorée comme l'ambre.",
-    image: "/images/skol-e1754908325569.png",
+    image: "/images/ferosol.png",
     accent: "#C9A84C",
+    imageFit: "cover" as const,
+    imagePadding: "0",
   },
   {
     category: "bière" as const,
@@ -82,8 +90,10 @@ const products = [
     aroma: "Sauge fraîche, zeste de citron vert, malt délicat, finale herbacée et vive.",
     description:
       "Calarwen — nom d'inspiration celtique évoquant la clarté et la lumière — est une blonde rafraîchissante et singulière. La sauge apporte une note herbeuse élégante, le citron vert une vivacité qui éveille les sens.",
-    image: "/images/Banniere-2.png",
+    image: "/images/calarwen.png",
     accent: "#5A8A3C",
+    imageFit: "cover" as const,
+    imagePadding: "0",
   },
 ];
 
@@ -116,7 +126,7 @@ function ProductCard({ product, index }: { product: typeof products[0]; index: n
     >
       {/* Image */}
       <div style={{ position: "relative", height: "320px", backgroundColor: "#1A1008" }}>
-        <Image src={product.image} alt={product.name} fill style={{ objectFit: "contain", padding: "2rem" }} />
+        <Image src={product.image} alt={product.name} fill style={{ objectFit: product.imageFit, padding: product.imagePadding }} />
         <div
           style={{
             position: "absolute",

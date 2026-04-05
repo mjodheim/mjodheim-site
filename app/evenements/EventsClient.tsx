@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import { motion } from "framer-motion";
 
 type Event = {
@@ -22,35 +21,32 @@ const typeIcon: Record<string, string> = {
 export default function EventsClient({ events }: { events: Event[] }) {
   return (
     <>
-      {/* Hero */}
+      {/* Hero sobre */}
       <section
         style={{
-          position: "relative",
-          height: "60vh",
-          minHeight: "450px",
-          display: "flex",
-          alignItems: "flex-end",
-          justifyContent: "center",
+          paddingTop: "160px",
           paddingBottom: "5rem",
+          textAlign: "center",
+          backgroundColor: "#0A0604",
+          position: "relative",
           overflow: "hidden",
         }}
       >
-        <div style={{ position: "absolute", inset: 0 }}>
-          <Image src="/images/Banniere-2.png" alt="Événements Mjödheim" fill priority style={{ objectFit: "cover" }} />
-          <div style={{ position: "absolute", inset: 0, background: "linear-gradient(180deg, rgba(10,6,4,0.4) 0%, rgba(10,6,4,0.7) 60%, rgba(10,6,4,1) 100%)" }} />
-        </div>
+        <div style={{ position: "absolute", inset: 0, background: "radial-gradient(ellipse at 50% 0%, rgba(201,168,76,0.07) 0%, transparent 60%)", pointerEvents: "none" }} />
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1 }}
-          style={{ position: "relative", zIndex: 1, textAlign: "center", padding: "0 2rem" }}
+          style={{ position: "relative", padding: "0 2rem" }}
         >
-          <p style={{ fontSize: "0.8rem", letterSpacing: "0.35em", textTransform: "uppercase", color: "#C9A84C", marginBottom: "1rem" }}>
-            Sur les routes de Mjödheim
-          </p>
-          <h1 style={{ fontFamily: "var(--font-cormorant), Georgia, serif", fontSize: "clamp(3rem, 7vw, 5.5rem)", fontWeight: 300, color: "#F5E6CC" }}>
+          <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "1rem", color: "#C9A84C", marginBottom: "1.5rem" }}>
+            <div style={{ width: "60px", height: "1px", background: "linear-gradient(90deg, transparent, #C9A84C)" }} />
+            <span style={{ fontSize: "0.8rem", letterSpacing: "0.3em", textTransform: "uppercase" }}>Sur les routes de Mjödheim</span>
+            <div style={{ width: "60px", height: "1px", background: "linear-gradient(90deg, #C9A84C, transparent)" }} />
+          </div>
+          <h1 style={{ fontFamily: "var(--font-cormorant), Georgia, serif", fontSize: "clamp(3rem, 6vw, 5rem)", fontWeight: 300, color: "#F5E6CC", marginBottom: "1.25rem" }}>
             Là où résonne{" "}
-            <em style={{ fontStyle: "italic", color: "#C9A84C", textShadow: "0 0 40px rgba(201,168,76,0.5)" }}>notre corne</em>
+            <em style={{ fontStyle: "italic", color: "#C9A84C", textShadow: "0 0 40px rgba(201,168,76,0.4)" }}>notre corne</em>
           </h1>
         </motion.div>
       </section>

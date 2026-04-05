@@ -1,10 +1,14 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 
 export default function AgeGate() {
+  const pathname = usePathname();
   const [visible, setVisible] = useState(false);
+
+  if (pathname?.startsWith("/keystatic") || pathname?.startsWith("/admin-login")) return null;
 
   useEffect(() => {
     const passed = sessionStorage.getItem("mjodheim_age_ok");

@@ -44,7 +44,7 @@ export default function ValuesSection() {
       {/* Image de fond avec overlay */}
       <div style={{ position: "absolute", inset: 0, zIndex: 0 }}>
         <Image
-          src="/images/Hydromel-tonneau.png"
+          src="/images/chronique-brassage.png"
           alt="Tonneaux d'hydromel"
           fill
           style={{ objectFit: "cover", objectPosition: "center" }}

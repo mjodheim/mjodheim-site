@@ -21,7 +21,7 @@ export default function HeroSection() {
       {/* Image de fond */}
       <div style={{ position: "absolute", inset: 0, zIndex: 0 }}>
         <Image
-          src="/images/naeroyfjord.jpg"
+          src="/images/hero.png"
           alt="Fjord nordique"
           fill
           priority
@@ -144,7 +144,7 @@ export default function HeroSection() {
           transition={{ duration: 0.8, delay: 1 }}
           style={{ display: "flex", gap: "1.25rem", justifyContent: "center", flexWrap: "wrap" }}
         >
-          <Link href="/nos-creations" className="btn-gold">
+          <Link href="/nos-hydromels" className="btn-gold">
             Découvrir nos créations
           </Link>
           <Link href="/notre-saga" className="btn-outline">

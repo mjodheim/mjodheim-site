@@ -10,19 +10,19 @@ const chapters = [
     rune: "ᚨ",
     title: "L'appel du hall",
     text: "Dans les terres du sud de la Belgique, là où le vent porte encore l'écho des vieilles légendes, un artisan a choisi de raviver une tradition millénaire : l'hydromel. Ni boisson oubliée ni fantaisie sucrée, mais un breuvage fier, sec et puissant, tel que les guerriers et poètes l'auraient reconnu. C'est ici, à Beaumont, qu'a vu le jour Mjödheim.",
-    image: "/images/drakkar.jpg",
+    image: "/images/appel-du-hall.png",
   },
   {
     rune: "ᚺ",
     title: "L'origine du nom",
     text: "En vieux norrois, Mjöðr signifie hydromel et heimr signifie maison ou foyer. Mjödheim, c'est donc la maison de l'hydromel — un lieu où le miel devient boisson, où le partage devient rite, et où chaque gorgée raconte une histoire. Le projet est né d'une passion : créer un hydromel authentique, fidèle à l'esprit des sagas, tout en apportant une touche d'artisan moderne.",
-    image: "/images/miel_150321893_web-edited.webp",
+    image: "/images/origine-du-nom.png",
   },
   {
     rune: "ᚢ",
     title: "Notre engagement",
     text: "Ici, pas de production industrielle, pas de raccourcis. Chaque lot est brassé à la main, avec un miel sélectionné pour sa pureté, de l'eau claire, des levures de qualité, et un savoir-faire affiné par l'expérience. Nos hydromels sont secs et corsés, loin des versions doucereuses. Nous utilisons des conservateurs naturels et reconnus pour garantir la fraîcheur et la qualité de chaque bouteille.",
-    image: "/images/Hydromel-ambiance.jpg",
+    image: "/images/notre-engagement.png",
   },
 ];
 
@@ -142,7 +142,7 @@ export default function SagaPageClient() {
       >
         <div style={{ position: "absolute", inset: 0 }}>
           <Image
-            src="/images/naeroyfjord.jpg"
+            src="/images/hero.png"
             alt="Fjord"
             fill
             priority

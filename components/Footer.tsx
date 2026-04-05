@@ -1,9 +1,12 @@
 "use client";
 
+import { usePathname } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
 
 export default function Footer() {
+  const pathname = usePathname();
+  if (pathname?.startsWith("/keystatic") || pathname?.startsWith("/admin-login")) return null;
   return (
     <footer
       style={{
@@ -84,7 +87,8 @@ export default function Footer() {
           </h4>
           {[
             { href: "/notre-saga", label: "Notre saga" },
-            { href: "/nos-creations", label: "Nos créations" },
+            { href: "/nos-hydromels", label: "Nos hydromels" },
+            { href: "/nos-bieres", label: "Nos bières" },
             { href: "/evenements", label: "Événements" },
             { href: "/chroniques", label: "Chroniques" },
             { href: "/faq", label: "FAQ" },

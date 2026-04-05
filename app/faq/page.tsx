@@ -30,12 +30,16 @@ const faqs = [
     a: "Absolument. L'hydromel sublime les marinades, les sauces, les desserts flambés et même certains fromages.",
   },
   {
-    q: "Où puis-je acheter vos hydromels ?",
-    a: "La distribution se fait directement à notre atelier à Beaumont ou lors des marchés médiévaux et événements auxquels nous participons. Consultez notre page Événements pour connaître les prochaines dates.",
+    q: "Où puis-je acheter vos créations ?",
+    a: "Nos hydromels et bières se trouvent principalement sur les marchés médiévaux et événements auxquels nous participons. Consultez notre page Événements pour les prochaines dates. Vous pouvez également passer commande directement via la page Contact.",
+  },
+  {
+    q: "Livrez-vous à domicile ?",
+    a: "Nous ne passons par aucun intermédiaire de livraison — nos créations sont trop précieuses pour être confiées à un transporteur. En revanche, une livraison personnelle dans un rayon raisonnable autour de Beaumont est possible, à discuter directement avec nous. Contactez-nous pour en parler.",
   },
   {
     q: "Proposez-vous des dégustations ?",
-    a: "Oui. Lors de marchés, événements ou sur rendez-vous à l'atelier.",
+    a: "Oui. Lors de marchés, événements ou sur rendez-vous. Contactez-nous pour organiser une dégustation.",
   },
   {
     q: "Puis-je devenir revendeur ?",

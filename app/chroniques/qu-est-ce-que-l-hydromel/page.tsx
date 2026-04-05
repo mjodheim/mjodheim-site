@@ -53,7 +53,7 @@ export default function ArticleHydromelPage() {
       >
         <div style={{ position: "absolute", inset: 0 }}>
           <Image
-            src="/images/miel_150321893_web-edited.webp"
+            src="/images/chronique-hydromel.png"
             alt="Miel"
             fill
             priority

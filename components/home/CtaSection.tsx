@@ -23,7 +23,7 @@ export default function CtaSection() {
       {/* Fond */}
       <div style={{ position: "absolute", inset: 0, zIndex: 0 }}>
         <Image
-          src="/images/La-foret-norvegienne-pendant-lautomne.jpg"
+          src="/images/hero.png"
           alt="Forêt norvégienne"
           fill
           style={{ objectFit: "cover", objectPosition: "center 30%" }}
@@ -104,7 +104,7 @@ export default function CtaSection() {
           </p>
 
           <div style={{ display: "flex", gap: "1.25rem", justifyContent: "center", flexWrap: "wrap" }}>
-            <Link href="/nos-creations" className="btn-gold">
+            <Link href="/nos-hydromels" className="btn-gold">
               Découvrir nos créations
             </Link>
             <Link href="/contact" className="btn-outline">

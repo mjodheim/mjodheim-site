@@ -12,8 +12,38 @@ const articles = [
       "Boisson mythique des festins vikings, breuvage sacré des anciens druides, l'hydromel revient aujourd'hui sur nos tables après des siècles d'oubli. Mais au fond, qu'est-ce que l'hydromel ?",
     date: "Août 2025",
     readTime: "5 min",
-    image: "/images/miel_150321893_web-edited.webp",
+    image: "/images/chronique-hydromel.png",
     category: "Histoire & culture",
+  },
+  {
+    slug: "comment-deguster-l-hydromel",
+    title: "Comment déguster l'hydromel ?",
+    excerpt:
+      "Température, verre adapté, accords gastronomiques… L'hydromel se déguste comme un grand vin. Quelques clés pour en tirer le meilleur.",
+    date: "Septembre 2025",
+    readTime: "4 min",
+    image: "/images/chronique-degustation.png",
+    category: "Dégustation",
+  },
+  {
+    slug: "brassage-artisanal-mjodheim",
+    title: "De la ruche à la bouteille : le brassage chez Mjödheim",
+    excerpt:
+      "Comment naît un hydromel artisanal ? Du choix du miel à l'embouteillage, découvrez les étapes qui font la différence entre l'ordinaire et l'exceptionnel.",
+    date: "Octobre 2025",
+    readTime: "6 min",
+    image: "/images/chronique-brassage.png",
+    category: "Savoir-faire",
+  },
+  {
+    slug: "hydromel-et-gastronomie",
+    title: "Hydromel et gastronomie : des accords inattendus",
+    excerpt:
+      "L'hydromel n'est pas qu'une boisson de marché médiéval. À table, il révèle une polyvalence surprenante. Fruits de mer, gibier, fromages affinés, desserts… découvrez comment le marier.",
+    date: "Novembre 2025",
+    readTime: "5 min",
+    image: "/images/chronique-gastronomie.png",
+    category: "Gastronomie",
   },
 ];
 

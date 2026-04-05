@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
+import { usePathname } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
 import { Menu, X } from "lucide-react";
@@ -70,7 +71,8 @@ function NavEmbers() {
 const navLinks = [
   { href: "/", label: "Accueil" },
   { href: "/notre-saga", label: "Notre saga" },
-  { href: "/nos-creations", label: "Nos créations" },
+  { href: "/nos-hydromels", label: "Nos hydromels" },
+  { href: "/nos-bieres", label: "Nos bières" },
   { href: "/evenements", label: "Événements" },
   { href: "/chroniques", label: "Chroniques" },
   { href: "/faq", label: "FAQ" },
@@ -78,8 +80,11 @@ const navLinks = [
 ];
 
 export default function Header() {
+  const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+
+  if (pathname?.startsWith("/keystatic") || pathname?.startsWith("/admin-login")) return null;
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 50);
