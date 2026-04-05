@@ -25,7 +25,7 @@ export default function EventsClient({ events }: { events: Event[] }) {
       <section
         style={{
           paddingTop: "160px",
-          paddingBottom: "2rem",
+          paddingBottom: "5rem",
           textAlign: "center",
           backgroundColor: "#0A0604",
           position: "relative",
@@ -36,7 +36,7 @@ export default function EventsClient({ events }: { events: Event[] }) {
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1 }}
+          transition={{ duration: 0.8 }}
           style={{ position: "relative", padding: "0 2rem" }}
         >
           <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "1rem", color: "#C9A84C", marginBottom: "1.5rem" }}>
@@ -44,24 +44,19 @@ export default function EventsClient({ events }: { events: Event[] }) {
             <span style={{ fontSize: "0.8rem", letterSpacing: "0.3em", textTransform: "uppercase" }}>Sur les routes de Mjödheim</span>
             <div style={{ width: "60px", height: "1px", background: "linear-gradient(90deg, #C9A84C, transparent)" }} />
           </div>
-          <h1 style={{ fontFamily: "var(--font-cormorant), Georgia, serif", fontSize: "clamp(3rem, 6vw, 5rem)", fontWeight: 300, color: "#F5E6CC", marginBottom: "1.25rem" }}>
+          <h1 style={{ fontFamily: "var(--font-cormorant), Georgia, serif", fontSize: "clamp(3rem, 6vw, 5rem)", fontWeight: 300, color: "#F5E6CC", marginBottom: "1rem" }}>
             Là où résonne{" "}
             <em style={{ fontStyle: "italic", color: "#C9A84C", textShadow: "0 0 40px rgba(201,168,76,0.4)" }}>notre corne</em>
           </h1>
+          <p style={{ fontFamily: "var(--font-cormorant), Georgia, serif", fontSize: "1.2rem", fontStyle: "italic", color: "rgba(245,230,204,0.55)" }}>
+            Des marchés médiévaux aux fêtes de village, Mjödheim voyage avec ses bouteilles et son savoir-faire.
+          </p>
         </motion.div>
       </section>
 
       {/* Contenu */}
-      <section style={{ backgroundColor: "#0A0604", padding: "3rem 2rem 6rem" }}>
+      <section style={{ backgroundColor: "#0A0604", padding: "2rem 2rem 6rem" }}>
         <div style={{ maxWidth: "900px", margin: "0 auto" }}>
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            style={{ fontFamily: "var(--font-cormorant), Georgia, serif", fontSize: "1.4rem", fontStyle: "italic", color: "rgba(245,230,204,0.75)", lineHeight: 1.8, textAlign: "center", marginBottom: "4rem" }}
-          >
-            Des marchés médiévaux aux fêtes de village, Mjödheim voyage avec ses bouteilles et son savoir-faire.
-          </motion.p>
 
           <h2 style={{ fontFamily: "var(--font-cormorant), Georgia, serif", fontSize: "2rem", color: "#C9A84C", marginBottom: "2rem", textAlign: "center" }}>
             Prochains rendez-vous
