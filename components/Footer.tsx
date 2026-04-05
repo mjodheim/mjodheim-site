@@ -165,7 +165,7 @@ export default function Footer() {
             Marchés, nouvelles recettes et récits légendaires sur nos réseaux.
           </p>
           <a
-            href="https://facebook.com"
+            href="https://www.facebook.com/profile.php?id=61579288641616"
             target="_blank"
             rel="noopener noreferrer"
             style={{

@@ -105,7 +105,7 @@ export default function EventsClient({ events }: { events: Event[] }) {
           )}
 
           <div style={{ textAlign: "center" }}>
-            <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="btn-outline">
+            <a href="https://www.facebook.com/profile.php?id=61579288641616" target="_blank" rel="noopener noreferrer" className="btn-outline">
               Suivre sur Facebook
             </a>
           </div>
