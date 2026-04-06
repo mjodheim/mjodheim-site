@@ -30,7 +30,7 @@ export const metadata: Metadata = {
     "Forgez votre légende, une gorgée à la fois. Brasserie artisanale nordique à Beaumont, Belgique. Hydromels et bières brassés à la main.",
   keywords: ["hydromel", "bière artisanale", "Belgique", "Beaumont", "nordique", "mead", "Mjödheim", "brasserie belge", "Ferosol", "Calarwen"],
   authors: [{ name: "Mjödheim" }],
-  metadataBase: new URL("https://mjodheim.be"),
+  metadataBase: new URL("https://www.mjodheim.be"),
   openGraph: {
     type: "website",
     locale: "fr_BE",
@@ -77,19 +77,22 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
               "@context": "https://schema.org",
-              "@type": "LocalBusiness",
+              "@type": ["LocalBusiness", "Brewery"],
               name: "Mjödheim",
               description: "Brasserie artisanale nordique à Beaumont, Belgique. Hydromels et bières brassés à la main.",
               url: "https://mjodheim.be",
               telephone: "+32470404191",
               email: "contact@mjodheim.be",
               address: {
-                "@type": "PostalAddress",
-                addressLocality: "Beaumont",
-                addressCountry: "BE",
-              },
+              "@type": "PostalAddress",
+              streetAddress: "Avenue de l'Esplanade 33",
+              postalCode: "6500",
+              addressLocality: "Beaumont",
+              addressRegion: "Hainaut",
+              addressCountry: "BE",
+            },
               image: "https://mjodheim.be/mjodheim-logo.jpg",
-              sameAs: [],
+              sameAs: ["https://www.facebook.com/profile.php?id=61579288641616"],
               priceRange: "€€",
             }),
           }}
