@@ -1,14 +1,13 @@
 import { NextRequest, NextResponse } from "next/server";
+import { verifyAdminToken, ADMIN_COOKIE_NAME } from "@/lib/admin-auth";
 
-const COOKIE_NAME = "mjodheim_admin_auth";
-const COOKIE_VALUE = "granted";
-
-export function proxy(req: NextRequest) {
+export async function proxy(req: NextRequest) {
   const { pathname } = req.nextUrl;
 
   if (pathname.startsWith("/keystatic") || pathname.startsWith("/api/keystatic")) {
-    const cookie = req.cookies.get(COOKIE_NAME);
-    if (cookie?.value !== COOKIE_VALUE) {
+    const token = req.cookies.get(ADMIN_COOKIE_NAME)?.value;
+    // Cookie SIGNÉ vérifié (HMAC + expiration) : un cookie forgé est rejeté.
+    if (!(await verifyAdminToken(token))) {
       const loginUrl = req.nextUrl.clone();
       loginUrl.pathname = "/admin-login";
       return NextResponse.redirect(loginUrl);
