@@ -99,7 +99,7 @@ const navLinks = [
   { href: "/outils/accises", label: "Calculateur" },
   { href: "/faq", label: "FAQ" },
   { href: "/contact", label: "Contact" },
-  { href: "https://brewtrack.mjodheim.be", label: "BrewTrack" },
+  { href: "/brewtrack", label: "BrewTrack" },
 ];
 
 export default function Header() {
