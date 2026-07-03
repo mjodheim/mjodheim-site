@@ -1,12 +1,13 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import exciseRates from "../../data/excise-rates.json";
 
 const GOLD = "#C9A84C", HONEY = "#F5A623", CREAM = "#F5E6CC", INK = "#0A0604", INK2 = "#130D08";
 const DIM = "rgba(245,230,204,0.66)", LINE = "rgba(201,168,76,0.22)";
 
-const BELGIUM_STANDARD_RATE = "2.00043";
-const RATE_SOURCE_URL = "https://finances.belgium.be/fr/douanes_accises/entreprises/accises/info-generales/taux-accise";
+const DEFAULT_RATE = exciseRates.rates[0];
+const DEFAULT_RATE_VALUE = String(DEFAULT_RATE.beerRateEurPerHlPlato);
 
 function platoFromGravity(sg: number): number {
   if (!(sg > 1)) return 0;
@@ -41,7 +42,7 @@ function Seg({ options, value, onChange }: { options: [string, string][]; value:
 }
 
 export default function AcciseInline() {
-  const [rate, setRate] = useState(BELGIUM_STANDARD_RATE);
+  const [rate, setRate] = useState(DEFAULT_RATE_VALUE);
   const [volume, setVolume] = useState("1000");
   const [volumeUnit, setVolumeUnit] = useState<"L" | "hL">("L");
   const [gravity, setGravity] = useState("1.050");
@@ -76,7 +77,7 @@ export default function AcciseInline() {
             <label style={labelStyle}>Taux officiel</label>
             <input style={inputStyle} inputMode="decimal" placeholder="EUR/hL/deg. Plato" value={rate} onChange={(e) => setRate(e.target.value)} />
             <div style={{ marginTop: 8, color: "rgba(245,230,204,0.46)", fontSize: 12, lineHeight: 1.45 }}>
-              Belgique standard par defaut. Modifiez ce taux si votre regime ou votre pays applique un autre bareme.
+              {DEFAULT_RATE.label} par defaut. Modifiez ce taux si votre regime ou votre pays applique un autre bareme.
             </div>
           </div>
           <div style={{ marginBottom: 16 }}>
@@ -110,8 +111,8 @@ export default function AcciseInline() {
       </div>
 
       <p style={{ margin: "14px 0 0", fontSize: 12, color: "rgba(245,230,204,0.46)", lineHeight: 1.55 }}>
-        Estimation indicative. Taux belge standard pre-rempli : {BELGIUM_STANDARD_RATE} EUR/hL/deg. Plato.
-        Les taux actuels doivent etre verifies sur <a href={RATE_SOURCE_URL} target="_blank" rel="noopener" style={{ color: GOLD, textDecoration: "none" }}>les sources SPF Finances, Fisconetplus ou TarBel</a>.
+        Estimation indicative. Taux pre-rempli : {DEFAULT_RATE_VALUE} EUR/hL/deg. Plato ({DEFAULT_RATE.sourceName}, verifie le {DEFAULT_RATE.lastCheckedAt}).
+        Les taux actuels doivent etre verifies sur <a href={DEFAULT_RATE.sourceUrl} target="_blank" rel="noopener" style={{ color: GOLD, textDecoration: "none" }}>les sources officielles</a>.
         Les reductions petite brasserie dependent du volume annuel et des conditions officielles.
       </p>
       <style>{`@media (max-width: 700px) { .bt-calc-grid { grid-template-columns: 1fr !important; } .bt-calc-pane { border-right: 0 !important; border-bottom: 1px solid ${LINE}; } }`}</style>

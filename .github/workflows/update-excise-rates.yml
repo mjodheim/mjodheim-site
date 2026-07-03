@@ -1,0 +1,33 @@
+name: Update excise rates
+
+on:
+  workflow_dispatch:
+  schedule:
+    # GitHub schedules use UTC. 02:00 UTC is 04:00 in Brussels during summer time.
+    - cron: "0 2 * * 1"
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  update-excise-rates:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Read official excise sources
+        run: node scripts/update-excise-rates.mjs
+      - name: Create pull request when rates change
+        uses: peter-evans/create-pull-request@v6
+        with:
+          branch: automation/update-excise-rates
+          commit-message: Update excise rates from official sources
+          title: Update excise rates from official sources
+          body: |
+            Weekly official-source-only excise rate check.
+
+            The script only reads configured official domains and opens this PR when the stored data changes.
+          add-paths: data/excise-rates.json

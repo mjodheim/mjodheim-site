@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "updatedAt": "2026-07-03",
+  "rates": [
+    {
+      "countryCode": "BE",
+      "countryName": "Belgique",
+      "label": "Belgique - taux standard",
+      "beerRateEurPerHlPlato": 2.00043,
+      "unit": "EUR_PER_HL_PLATO",
+      "sourceName": "SPF Finances - Douanes & Accises / Fisconetplus / TarBel",
+      "sourceUrl": "https://finances.belgium.be/fr/douanes_accises/entreprises/accises/info-generales/taux-accise",
+      "verification": "manual-official-source",
+      "lastCheckedAt": "2026-07-03"
+    }
+  ]
+}
