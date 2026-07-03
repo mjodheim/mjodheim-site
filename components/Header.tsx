@@ -96,8 +96,10 @@ const navLinks = [
   { href: "/nos-bieres", label: "Nos bières" },
   { href: "/evenements", label: "Événements" },
   { href: "/chroniques", label: "Chroniques" },
+  { href: "/outils/accises", label: "Calculateur" },
   { href: "/faq", label: "FAQ" },
   { href: "/contact", label: "Contact" },
+  { href: "https://brewtrack.mjodheim.be", label: "BrewTrack" },
 ];
 
 export default function Header() {
