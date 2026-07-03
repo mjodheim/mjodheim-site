@@ -5,6 +5,21 @@ import { useMemo, useState } from "react";
 const GOLD = "#C9A84C", HONEY = "#F5A623", CREAM = "#F5E6CC", INK = "#0A0604", INK2 = "#140D08";
 const DIM = "rgba(245,230,204,0.66)", LINE = "rgba(201,168,76,0.22)";
 
+const LEAD_LANGUAGES = [
+  { code: "fr", label: "Francais" },
+  { code: "en", label: "English" },
+  { code: "nl", label: "Nederlands" },
+  { code: "de", label: "Deutsch" },
+  { code: "es", label: "Espanol" },
+  { code: "it", label: "Italiano" },
+  { code: "pt", label: "Portugues" },
+  { code: "pl", label: "Polski" },
+  { code: "cs", label: "Cestina" },
+  { code: "da", label: "Dansk" },
+  { code: "sv", label: "Svenska" },
+  { code: "no", label: "Norsk" },
+];
+
 const PRESETS: { label: string; rate: number | "custom" }[] = [
   { label: "Belgique — taux standard", rate: 2.00043 },
   { label: "Belgique — petite brasserie (réduit)", rate: 0.3966 },
@@ -71,6 +86,7 @@ export default function AcciseClient() {
   const [brewery, setBrewery] = useState("");
   const [email, setEmail] = useState("");
   const [contact, setContact] = useState("");
+  const [language, setLanguage] = useState("fr");
   const [consent, setConsent] = useState(false);
   const [sent, setSent] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -82,7 +98,7 @@ export default function AcciseClient() {
     try {
       const res = await fetch("/api/brewtrack-lead", {
         method: "POST", headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ breweryName: brewery, email, contactName: contact, source: "Calculator" }),
+        body: JSON.stringify({ breweryName: brewery, email, contactName: contact, language, source: "Calculator" }),
       });
       if (res.ok) setSent(true);
       else setErr("Une erreur s'est produite. Réessayez plus tard.");
@@ -163,7 +179,12 @@ export default function AcciseClient() {
                 <input style={inputStyle} placeholder="Nom de la brasserie *" value={brewery} onChange={(e) => setBrewery(e.target.value)} required />
                 <input style={inputStyle} type="email" placeholder="Email *" value={email} onChange={(e) => setEmail(e.target.value)} required />
               </div>
-              <input style={{ ...inputStyle, marginBottom: 12 }} placeholder="Votre prénom (facultatif)" value={contact} onChange={(e) => setContact(e.target.value)} />
+              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 10, marginBottom: 12 }}>
+                <input style={inputStyle} placeholder="Votre prenom (facultatif)" value={contact} onChange={(e) => setContact(e.target.value)} />
+                <select style={inputStyle} value={language} onChange={(e) => setLanguage(e.target.value)} aria-label="Langue preferee">
+                  {LEAD_LANGUAGES.map((l) => <option key={l.code} value={l.code}>{l.label}</option>)}
+                </select>
+              </div>
               <label style={{ display: "flex", gap: 10, alignItems: "flex-start", fontSize: 13, color: DIM, marginBottom: 16, cursor: "pointer" }}>
                 <input type="checkbox" checked={consent} onChange={(e) => setConsent(e.target.checked)} required style={{ marginTop: 3 }} />
                 <span>J'accepte d'être recontacté par BrewTrack au sujet de l'essai. Désinscription à tout moment.</span>

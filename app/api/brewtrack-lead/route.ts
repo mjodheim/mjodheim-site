@@ -1,6 +1,13 @@
 import { NextRequest, NextResponse } from "next/server";
 import { rateLimit, clientIp } from "@/lib/rate-limit";
 
+const SUPPORTED_LANGUAGES = new Set(["fr", "en", "nl", "de", "es", "it", "pt", "pl", "cs", "da", "sv", "no"]);
+
+function normalizeLanguage(value: unknown, fallback = "fr") {
+  const code = typeof value === "string" ? value.trim().slice(0, 2).toLowerCase() : "";
+  return SUPPORTED_LANGUAGES.has(code) ? code : fallback;
+}
+
 // Transmet un lead capté sur le site (calculateur / formulaire BrewTrack) vers la
 // Console Croissance de BrewTrack. La clé d'ingestion reste côté serveur (jamais
 // exposée au navigateur). Lead consenti (la personne a soumis son email volontairement).
@@ -19,6 +26,9 @@ export async function POST(req: NextRequest) {
   const email = str(body.email);
   const contactName = str(body.contactName);
   const country = str(body.country);
+  const acceptLanguage = req.headers.get("accept-language")?.split(",")[0];
+  const browserLanguage = normalizeLanguage(acceptLanguage);
+  const language = normalizeLanguage(body.language, browserLanguage);
 
   const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   if (!breweryName || !EMAIL_RE.test(email) || breweryName.length > 160 || email.length > 200) {
@@ -39,7 +49,7 @@ export async function POST(req: NextRequest) {
         breweryName, email,
         contactName: contactName || null,
         country: country || null,
-        language: "fr",
+        language,
         source: typeof body.source === "string" ? body.source : "Website",
       }),
     });

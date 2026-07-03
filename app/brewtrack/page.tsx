@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import AcciseInline from "./AcciseInline";
 
 export const metadata: Metadata = {
   title: { absolute: "BrewTrack – le logiciel de gestion fait par un brasseur" },
@@ -63,6 +64,8 @@ export default function BrewTrackPage() {
           ))}
         </div>
 
+        <AcciseInline />
+
         {/* Bottom CTA */}
         <div style={{ textAlign: "center", border: `1px solid rgba(245,166,35,0.35)`, borderRadius: 12, padding: "32px 26px", background: "linear-gradient(135deg, rgba(245,166,35,0.08), rgba(224,90,0,0.05))" }}>
           <h2 style={{ fontFamily: "var(--font-cormorant), Georgia, serif", fontWeight: 300, fontSize: "1.8rem", margin: "0 0 8px" }}>
@@ -75,11 +78,6 @@ export default function BrewTrackPage() {
             style={{ background: HONEY, color: "#1a1206", fontWeight: 700, textDecoration: "none", padding: "14px 30px", borderRadius: 8, fontSize: 16, display: "inline-block" }}>
             Ouvrir BrewTrack →
           </a>
-          <div style={{ marginTop: 14 }}>
-            <a href="/outils/accises" style={{ color: GOLD, fontSize: 14, textDecoration: "none" }}>
-              Ou testez d'abord le calculateur d'accises gratuit →
-            </a>
-          </div>
         </div>
       </div>
 
