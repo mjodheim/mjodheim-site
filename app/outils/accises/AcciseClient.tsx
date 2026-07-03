@@ -173,6 +173,13 @@ export default function AcciseClient() {
                 style={{ background: HONEY, color: "#1a1206", border: "none", fontWeight: 700, padding: "13px 26px", borderRadius: 8, fontSize: 15, cursor: "pointer", opacity: loading ? 0.6 : 1 }}>
                 {loading ? "Envoi…" : "Je veux tester BrewTrack gratuitement →"}
               </button>
+              <div style={{ marginTop: 14, fontSize: 14 }}>
+                <span style={{ color: DIM }}>Ou allez-y directement : </span>
+                <a href="https://brewtrack.mjodheim.be" target="_blank" rel="noopener"
+                  style={{ color: GOLD, fontWeight: 600, textDecoration: "none" }}>
+                  découvrir BrewTrack →
+                </a>
+              </div>
             </form>
           )}
         </div>
