@@ -2,7 +2,6 @@ import { NextRequest, NextResponse } from "next/server";
 import { Resend } from "resend";
 import { rateLimit, clientIp } from "@/lib/rate-limit";
 
-const resend = new Resend(process.env.RESEND_API_KEY);
 
 // Échappe le HTML : empêche l'injection de balises/liens dans l'email reçu.
 function esc(s: string): string {
@@ -47,6 +46,12 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: "Un des champs est trop long." }, { status: 400 });
   }
 
+  const resendApiKey = process.env.RESEND_API_KEY;
+  if (!resendApiKey) {
+    return NextResponse.json({ error: "Service email non configuré." }, { status: 503 });
+  }
+
+  const resend = new Resend(resendApiKey);
   const { error } = await resend.emails.send({
     from: "Mjödheim Contact <contact@mjodheim.be>",
     to: process.env.CONTACT_EMAIL ?? "contact@mjodheim.be",

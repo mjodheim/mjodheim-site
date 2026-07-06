@@ -1,36 +1,112 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Mjödheim site
 
-## Getting Started
+Site vitrine de Mjödheim, brasserie artisanale nordique a Beaumont, Belgique.
+Le site présente la brasserie, les hydromels, les bières, les événements, les chroniques, un formulaire de contact et une page BrewTrack avec capture de leads.
 
-First, run the development server:
+## Stack
+
+- Next.js 16 App Router
+- React 19
+- TypeScript
+- Tailwind CSS 4
+- Framer Motion
+- Keystatic pour le contenu éditorial local ou GitHub-backed
+- Resend pour le formulaire de contact
+- Vercel Speed Insights
+
+Le projet est prive et ne doit pas contenir de secrets commites.
+
+## Routes principales
+
+- `/` - page d'accueil
+- `/notre-saga` - histoire de la brasserie
+- `/nos-creations`, `/nos-hydromels`, `/nos-bières` - produits
+- `/événements` - calendrier basé sur le contenu local
+- `/chroniques` et `/chroniques/[slug]` - articles Markdoc
+- `/outils/accises` - estimateur indicatif des accises
+- `/brewtrack` - présentation BrewTrack et capture de leads
+- `/faq`, `/contact`, `/confidentialite`
+- `/api/contact` - envoi d'email via Resend
+- `/api/brewtrack-lead` - transmission serveur-vers-serveur vers BrewTrack
+
+## Contenu editable
+
+Keystatic est configure dans `keystatic.config.ts`.
+
+- Articles: `content/articles/*.mdoc`
+- Evenements: `content/events/*.yaml`
+- Donnees statiques: `data/events.json`, `data/excise-rates.json`
+- Assets publics: `public/`
+
+Sans configuration GitHub Keystatic, le stockage reste local. Avec les variables GitHub ci-dessous, Keystatic peut ecrire dans le depot configure.
+
+## Variables d'environnement
+
+Créer un `.env.local` si necessaire. Ne pas le committer.
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+RESEND_API_KEY=...
+CONTACT_EMAIL=contact@mjodheim.be
+
+BREWTRACK_API_URL=https://brewtrack.mjodheim.be
+GROWTH_INGEST_KEY=...
+
+KEYSTATIC_GITHUB_CLIENT_ID=...
+NEXT_PUBLIC_GITHUB_OWNER=mjodheim
+NEXT_PUBLIC_GITHUB_REPO=mjodheim-site
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Notes:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- `RESEND_API_KEY` est requis pour que `/api/contact` envoie les emails.
+- `CONTACT_EMAIL` est optionnel; par défaut les messages partent vers `contact@mjodheim.be`.
+- `GROWTH_INGEST_KEY` est requis pour activer la capture de leads BrewTrack.
+- `BREWTRACK_API_URL` vaut `https://brewtrack.mjodheim.be` par défaut.
+- Les variables Keystatic GitHub sont optionnelles.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Développement local
 
-## Learn More
+```bash
+npm ci
+npm run dev
+```
 
-To learn more about Next.js, take a look at the following resources:
+Ouvrir `http://localhost:3000`.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Vérification
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```bash
+npm run lint
+npm run build
+```
 
-## Deploy on Vercel
+Pour mettre a jour les taux d'accises depuis le script dédié:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```bash
+npm run update:excise-rates
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Sécurité
+
+- En-têtes de sécurité globaux dans `next.config.ts`: `nosniff`, `DENY`, referrer policy, permissions policy et `frame-ancestors 'none'`.
+- Formulaire de contact: validation des champs, échappement HTML avant email, rate limit par IP.
+- Capture de leads BrewTrack: rate limit par IP, validation email/longueurs, cle d'ingestion uniquement côté serveur.
+- Metadata, Open Graph, robots et sitemap sont gérés dans `app/layout.tsx`, `app/robots.ts` et `app/sitemap.ts`.
+
+## Déploiement
+
+Le projet peut etre déployé comme application Next.js standard.
+
+```bash
+npm ci
+npm run build
+npm run start
+```
+
+Vérifier apres deploiement:
+
+- `https://mjodheim.be`
+- `https://mjodheim.be/sitemap.xml`
+- `https://mjodheim.be/robots.txt`
+- formulaire `/contact`
+- formulaire lead sur `/brewtrack` si `GROWTH_INGEST_KEY` est configure
